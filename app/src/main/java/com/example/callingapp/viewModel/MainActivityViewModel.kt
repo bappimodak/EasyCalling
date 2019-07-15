@@ -1,20 +1,33 @@
 package com.example.callingapp.viewModel
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.content.Context
-import com.example.callingapp.UserRepository
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import com.example.callingapp.model.UserDetails
+import com.example.callingapp.repository.UserDetailsRepository
 
-class MainActivityViewModel : ViewModel() {
-    private var userList: MutableLiveData<List<UserDetails>>? = null
+class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
 
-    fun init(context: Context) {
-        userList = UserRepository.getInstances()?.getUserList(context)
-    }
+    private var userDetailsRepository: UserDetailsRepository = UserDetailsRepository(application)
+    private var userList: LiveData<List<UserDetails>>? = userDetailsRepository.getAllUsersLiveData()
 
     fun getUserList(): LiveData<List<UserDetails>>? {
+//            = runBlocking {
+//        async(IO) {
+//            val userArrayList = db.userDao().getAll()
+//            userList = MutableLiveData()
+//            userList.postValue(userArrayList)
+//            userList = db.userDao().getAll()
+//            if(userList!=null){
+//                userList.value
+//            }
+//        }.await()
+//        userList
         return userList
+    }
+
+
+    fun getUserLists(): List<UserDetails>? {
+        return userDetailsRepository.getAllUsers()
     }
 }

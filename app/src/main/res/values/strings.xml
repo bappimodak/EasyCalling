@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CallingApp</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="user_image">User Image</string>
+    <string name="camera_icon">Camera Icon</string>
+    <string name="save">Save</string>
 </resources>

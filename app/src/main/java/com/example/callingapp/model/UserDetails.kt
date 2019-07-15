@@ -1,5 +1,7 @@
 package com.example.callingapp.model
 
-import android.graphics.drawable.Drawable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class UserDetails(var userName: String, var number: String, var drawable: Drawable?)
+@Entity(tableName = "UserDetails")
+data class UserDetails(@PrimaryKey var number: String, var userName: String, var userImage: String?)
